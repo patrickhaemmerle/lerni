@@ -33,6 +33,17 @@ class User::SignupActionTest < ActiveSupport::TestCase
         assert result.errors[:login]
     end
     
+    test "a login that already exists leads to error" do
+       result = nil
+        @user_hash[:login] = users(:one).login
+        assert_no_difference "User.count" do
+            result = User::SignupAction.perform @user_hash
+        end
+        assert_not result.success?
+        assert_equal 1, result.errors.count
+        assert result.errors[:login]
+    end
+    
     test "do not accept email address without an @" do
         result = nil
         @user_hash[:email] = "not an email"

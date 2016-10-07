@@ -15,6 +15,12 @@ class User::SignupAction
      # https://davidcel.is/posts/stop-validating-email-addresses-with-regex/
      validates :email, format: {with: /\A(.*@.*)?\z/}, presence: false
      
+     validate do
+         if User.find_by_login(login) 
+            errors.add :login, "Login already exists!"
+         end
+     end
+     
      def perform
           unless valid?
                @password = ""
