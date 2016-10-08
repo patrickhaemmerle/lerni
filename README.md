@@ -7,7 +7,8 @@ Backlog: https://github.com/patrickhaemmerle/lerni/milestone/2
 
 # Thoughts about Ruby on Rails 
 
-...
+## Transition from Java
+The first time I heard of Rails an tried it out it was the _convention over configuration_ thing that convinced me very quickly. I have been working with Spring in the past and they did a very well job too in this area but Rails seemed to drive this at least one level further. Some things turned out to be a little bit oversimplified, for example I very quickly came to the conclusion that the default scaffolding seems to be too simple. And in fact I ended up in generating the model, then generating an empty controller and start from here. Most of the repetitive tasks are done by the generators and I can start with the fun part.
 
 # Project management with Github
 
