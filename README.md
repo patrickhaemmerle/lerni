@@ -9,6 +9,8 @@ Backlog: https://github.com/patrickhaemmerle/lerni/milestone/2
 
 The first time I heard of Rails an tried it out it was the _convention over configuration_ thing that convinced me. Some things turned out to be not so easy as it seemed. For example I very quickly came to the conclusion that the default scaffolding seems to be too simple. And there are a lot of situations where scaffolding is simply not what I want.I ended up generating the model, then generating an empty controller and start from here. Most of the repetitive tasks are done by the generators and I can start with the fun part.
 
+... more to come yet ...
+
 # Project management with Github
 
 ...
