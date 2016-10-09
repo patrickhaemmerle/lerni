@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+
+  namespace :auth do
+    get  'signup' => 'signup#index'
+    post 'signup' => 'signup#signup'
+  end
+
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

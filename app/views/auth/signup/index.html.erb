@@ -1,0 +1,14 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">Sign Up</div>
+    <div class="panel-body">
+        <%= simple_form_for @signup, url: auth_signup_path do |f| %>
+            <%= f.input :firstname %>
+            <%= f.input :lastname %>
+            <%= f.input :email, as: :email %>
+            <%= f.input :login, required: true, error: false%>
+            <%= f.input :password, as: :password, required: true, error: false %>
+            <%= f.input :password_confirmation, as: :password, error: "Passwords did not match." %>
+            <%= f.button :submit, class: "btn-primary" %>
+        <% end %>
+    </div>
+</div>
