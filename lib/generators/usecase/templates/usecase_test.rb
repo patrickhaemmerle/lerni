@@ -5,7 +5,6 @@ class <%= class_name %>Test < ActiveSupport::TestCase
     end
     
     test "successful call" do
-        result = nil
         result = <%= class_name %>.perform @default_params
         assert result.success?
     end
