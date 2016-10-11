@@ -29,4 +29,25 @@ class User::LoginActionTest < ActiveSupport::TestCase
         assert_equal nil, @session[:userid]
     end
     
+    test "blank login leads to error" do
+         @default_params[:login] = ""
+        result = User::LoginAction.perform @default_params
+        assert_not result.success?
+        assert_equal nil, @session[:userid]
+    end
+    
+    test "nil login leads to error" do
+         @default_params[:login] = nil
+        result = User::LoginAction.perform @default_params
+        assert_not result.success?
+        assert_equal nil, @session[:userid]
+    end
+    
+    test "nil password leads to error" do
+         @default_params[:password] = ""
+        result = User::LoginAction.perform @default_params
+        assert_not result.success?
+        assert_equal nil, @session[:userid]
+    end
+    
 end

@@ -11,6 +11,7 @@ class <%= class_name %>
      end
     
     def perform
+        unless valid? then return end
         # put your implementation here
     end 
 end

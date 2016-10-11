@@ -5,9 +5,7 @@ class User::LogoutAction
     validates :sess, presence: true
     
     def perform
-        unless valid?
-            return
-        end
+        unless valid? then return end
         @sess[:userid] = nil
     end 
 end
