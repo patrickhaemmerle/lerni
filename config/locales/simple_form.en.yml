@@ -11,10 +11,6 @@ en:
     error_notification:
       default_message: "Please review the problems below:"
       
-    hints:
-      defaults:
-        login: "Must have at least 5 characters"
-        password: "Must have at least 6 characters, one number and one special character"
     # Examples
     # labels:
     #   defaults:

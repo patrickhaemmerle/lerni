@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   namespace :auth do
+    get  'login'  => 'login#index'
+    post 'login'  => 'login#login'
     get  'signup' => 'signup#index'
     post 'signup' => 'signup#signup'
   end

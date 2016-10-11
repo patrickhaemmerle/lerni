@@ -50,4 +50,11 @@ class User::LoginActionTest < ActiveSupport::TestCase
         assert_equal nil, @session[:userid]
     end
     
+    test "does not expose password" do
+        result = User::LoginAction.perform @default_params
+        assert_raises NoMethodError do
+            result.password
+        end
+    end
+    
 end
