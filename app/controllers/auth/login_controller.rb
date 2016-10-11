@@ -18,4 +18,9 @@ class Auth::LoginController < ApplicationController
     end
   end
   
+  def logout
+    User::LogoutAction.perform sess: session
+    redirect_to root_path
+  end
+  
 end

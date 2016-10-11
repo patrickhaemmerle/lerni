@@ -25,5 +25,12 @@ class Auth::LoginControllerTest < ActionController::TestCase
     assert assert flash[:error]
     assert_template 'index'
   end
+  
+  test "logout" do
+    session[:userid] = 9
+    delete :logout
+    assert_redirected_to root_path
+    assert_nil session[:userid]
+  end
 
 end
