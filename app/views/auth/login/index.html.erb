@@ -1,0 +1,10 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">Login</div>
+    <div class="panel-body">
+        <%= simple_form_for @login, url: auth_login_path do |f|%>
+            <%= f.input :login %>
+            <%= f.input :password %>
+            <%= f.button :submit, "Login", class: "btn-primary" %>
+        <% end %>
+    </div>
+</div>
