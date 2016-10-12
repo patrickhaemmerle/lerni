@@ -19,10 +19,16 @@ class Auth::LoginControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test "failed login" do
+  test "failed login - flash is set" do
+    post :login, user_login_action: {login: "us999", password: "myPass1!WRONG"}
+    assert assert flash[:error]
+    assert_template 'index'
+  end
+  
+  test "failed login - userid in session is nil" do
+    session[:userid] = 123
     post :login, user_login_action: {login: "us999", password: "myPass1!WRONG"}
     assert_nil session[:userid]    
-    assert assert flash[:error]
     assert_template 'index'
   end
   

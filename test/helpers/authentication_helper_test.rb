@@ -20,22 +20,6 @@ class AuthenticationHelperTest < ActionView::TestCase
     assert_nil current_user
   end
   
-  test "login normal" do
-    login users(:one).id
-    assert_equal users(:one).id, session[:userid]
-  end
-  
-  test "login inexistent user" do
-    login 123
-    assert_nil session[:userid]
-  end
-  
-  test "logout" do
-    session[:userid] = 123
-    logout
-    assert_nil session[:userid]
-  end
-  
   test "logged_in? true" do
     session[:userid] = users(:one).id
     assert logged_in?

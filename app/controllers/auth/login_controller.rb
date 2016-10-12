@@ -1,25 +1,26 @@
 class Auth::LoginController < ApplicationController
   
   def index
-    @login = User::LoginAction.new
+    @login = User::AuthenticateQuery.new
   end
   
   def login
     login = params[:user_login_action][:login]
     password = params[:user_login_action][:password]
-    result = User::LoginAction.perform login: login, password: password, sess: session
+    result = User::AuthenticateQuery.perform login: login, password: password
     if result.success?
+      session[:userid] = result.userid
       redirect_to root_path
     else
+      session[:userid] = nil
       flash.now[:error] = "Login failed, please try again!"
       @login = result
       render 'index'
-      #redirect_to auth_login_path
     end
   end
   
   def logout
-    User::LogoutAction.perform sess: session
+    session[:userid] = nil    
     redirect_to root_path
   end
   

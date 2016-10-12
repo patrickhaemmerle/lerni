@@ -8,17 +8,6 @@ module AuthenticationHelper
         end
     end
     
-    def login userid
-        session[:userid] = userid
-        unless current_user
-            logout
-        end
-    end
-    
-    def logout
-        session[:userid] = nil 
-    end
-    
     def logged_in?
         if session[:userid] && current_user
             return true
