@@ -5,8 +5,8 @@ class Auth::LoginController < ApplicationController
   end
   
   def login
-    login = params[:user_login_action][:login]
-    password = params[:user_login_action][:password]
+    login = params[:user_authenticate_query][:login]
+    password = params[:user_authenticate_query][:password]
     result = User::AuthenticateQuery.perform login: login, password: password
     if result.success?
       session[:userid] = result.userid
