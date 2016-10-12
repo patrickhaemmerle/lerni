@@ -14,20 +14,20 @@ class Auth::LoginControllerTest < ActionController::TestCase
   end
   
   test "successful login" do
-    post :login, user_login_action: {login: "us999", password: "myPass1!"}
+    post :login, user_authenticate_query: {login: "us999", password: "myPass1!"}
     assert_equal @user.id, session[:userid]    
     assert_redirected_to root_path
   end
 
   test "failed login - flash is set" do
-    post :login, user_login_action: {login: "us999", password: "myPass1!WRONG"}
+    post :login, user_authenticate_query: {login: "us999", password: "myPass1!WRONG"}
     assert assert flash[:error]
     assert_template 'index'
   end
   
   test "failed login - userid in session is nil" do
     session[:userid] = 123
-    post :login, user_login_action: {login: "us999", password: "myPass1!WRONG"}
+    post :login, user_authenticate_query: {login: "us999", password: "myPass1!WRONG"}
     assert_nil session[:userid]    
     assert_template 'index'
   end

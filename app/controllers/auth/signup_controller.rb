@@ -11,6 +11,7 @@ class Auth::SignupController < ApplicationController
     @signup = User::SignupAction.perform(input)
     
     if @signup.success?
+      session[:userid] = @signup.id
       flash[:success] = "Welcome, you successfully signed up!"
       redirect_to root_path
     else
