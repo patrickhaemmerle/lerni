@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Box 1
+  user: one 
+
+two:
+  name: Box 2
+  user: one 
+  
+three:
+  name: Box 2
+  user: two 
