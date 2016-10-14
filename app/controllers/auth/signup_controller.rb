@@ -1,5 +1,7 @@
 class Auth::SignupController < ApplicationController
   
+  skip_before_filter :login_required, :only => [:index, :signup]
+  
   def index
     @signup = User::SignupAction.new
   end

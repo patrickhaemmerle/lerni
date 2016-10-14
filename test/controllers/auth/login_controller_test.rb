@@ -33,7 +33,7 @@ class Auth::LoginControllerTest < ActionController::TestCase
   end
   
   test "logout" do
-    session[:userid] = 9
+    login users(:one)
     delete :logout
     assert_redirected_to root_path
     assert_nil session[:userid]

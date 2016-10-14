@@ -1,5 +1,7 @@
 class Auth::LoginController < ApplicationController
   
+  skip_before_filter :login_required, :only => [:index, :login]
+  
   def index
     @login = User::AuthenticateQuery.new
   end
