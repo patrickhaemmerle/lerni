@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :boxes, only: [:index, :new, :create]
+ 
   namespace :auth do
     get    'login'  => 'login#index'
     post   'login'  => 'login#login'

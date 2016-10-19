@@ -16,7 +16,7 @@ class Auth::LoginControllerTest < ActionController::TestCase
   test "successful login" do
     post :login, user_authenticate_query: {login: "us999", password: "myPass1!"}
     assert_equal @user.id, session[:userid]    
-    assert_redirected_to root_path
+    assert_redirected_to boxes_path
   end
 
   test "failed login - flash is set" do

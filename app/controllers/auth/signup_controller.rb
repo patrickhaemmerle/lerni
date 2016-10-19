@@ -15,7 +15,7 @@ class Auth::SignupController < ApplicationController
     if @signup.success?
       session[:userid] = @signup.id
       flash[:success] = "Welcome, you successfully signed up!"
-      redirect_to root_path
+      redirect_to boxes_path
     else
       render :index
     end

@@ -14,4 +14,8 @@ class ActiveSupport::TestCase
       session[:userid] = user
     end
   end
+  
+  def logout 
+    session[:userid] = nil
+  end
 end

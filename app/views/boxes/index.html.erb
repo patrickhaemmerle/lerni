@@ -1,0 +1,22 @@
+<p>
+    <%= link_to new_box_path, class: "btn btn-primary" do %>
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create new Box
+    <% end %>
+</p>
+
+<% if @boxes.count == 0 %>
+    Welcome, you have no boxes yet. Create a box to start using lerni.
+<% end %>
+<div class="row">
+    <% @boxes.each do |box| %>
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <!-- img src="..." alt="..." -->
+                <div class="caption">
+                    <h3><%= box[:name] %></h3>
+                    <!-- p>...</p -->
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>

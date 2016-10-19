@@ -18,7 +18,7 @@ class Auth::SignupControllerTest < ActionController::TestCase
     post :signup, user_signup_action: {firstname: "Firstname", lastname: "Lastname", 
       login: "user9999", email: "user9999@localhost.local", 
       password: "myPass1!", password_confirmation: "myPass1!"}
-    assert_redirected_to root_path
+    assert_redirected_to boxes_path
   end
   
   test "flash upon successful signup" do

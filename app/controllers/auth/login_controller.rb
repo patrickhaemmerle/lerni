@@ -12,7 +12,7 @@ class Auth::LoginController < ApplicationController
     result = User::AuthenticateQuery.perform login: login, password: password
     if result.success?
       session[:userid] = result.userid
-      redirect_to root_path
+      redirect_to boxes_path
     else
       session[:userid] = nil
       flash.now[:error] = "Login failed, please try again!"
