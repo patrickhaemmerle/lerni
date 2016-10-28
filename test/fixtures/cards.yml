@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  front: Front side 1
+  back: Back side 1
+  box: one 
+
+two:
+  front: Front side 2
+  back: Back side 2
+  box: one 
+
+three:
+  front: Front side 3
+  back: Back side 3
+  box: two 
+  
+four:
+  front: Front side 4
+  back: Back side 4
+  box: two
