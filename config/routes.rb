@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :boxes, only: [:index, :new, :create]
+  resources :boxes, only: [:index, :new, :create] do
+    resources :cards, only: [:create, :new], shallow: true
+  end
  
   namespace :auth do
     get    'login'  => 'login#index'

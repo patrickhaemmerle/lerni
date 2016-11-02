@@ -9,5 +9,5 @@ two:
   user: one 
   
 three:
-  name: Box 2
+  name: Box 3
   user: two 

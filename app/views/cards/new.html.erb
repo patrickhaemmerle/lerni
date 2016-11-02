@@ -1,0 +1,11 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">Add a card to xyz</div>
+    <div class="panel-body">
+        <%= simple_form_for @formdata, url: box_cards_path do |f|%>
+            <%= f.input :front %>
+            <%= f.input :back %>
+            <%= f.button :submit, "Create", class: "btn-primary" %>
+            <%= link_to "Cancel", boxes_path, class: "btn btn-default" %>
+        <% end %>
+    </div>
+</div>
