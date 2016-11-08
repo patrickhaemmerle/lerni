@@ -11,7 +11,7 @@ class Box::ListCardsForBoxQueryTest < ActiveSupport::TestCase
         assert_equal 2, result.cards.count
         result.cards.each do |card|
             reference = Card.find card[:id]
-            assert_not card.is_a? Card
+            assert card.is_a? Hash
             assert_equal @default_params[:box_id], card[:box_id]
             assert_equal reference.box_id, card[:box_id]
             assert_equal reference.front, card[:front]
@@ -23,7 +23,7 @@ class Box::ListCardsForBoxQueryTest < ActiveSupport::TestCase
         result = Box::ListCardsForBoxQuery.perform @default_params
         
         assert result.success?
-        assert_not result.box.is_a? Box
+        assert result.box.is_a? Hash
         assert_equal boxes(:one).id, result.box[:id]
         assert_equal boxes(:one).user_id, result.box[:user_id] 
         assert_equal boxes(:one).name, result.box[:name]

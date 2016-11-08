@@ -9,7 +9,8 @@ class Box::ListBoxesForUserQueryTest < ActiveSupport::TestCase
         assert result.success?
         assert_equal 2, result.boxes.count
         result.boxes.each do | box |
-           assert_equal users(:one).id, box[:user_id]
+            assert box.is_a? Hash
+            assert_equal users(:one).id, box[:user_id]
         end
     end
     
