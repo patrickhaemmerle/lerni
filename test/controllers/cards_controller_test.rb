@@ -4,7 +4,7 @@ class CardsControllerTest < ActionController::TestCase
   
   setup do
     login users(:one)  
-    @default_params = {box_add_card_to_box_action: {front: "myFront", back: "myBack"}, box_id: boxes(:one).id}
+    @default_params = {formdata: {front: "myFront", back: "myBack"}, box_id: boxes(:one).id}
   end
   
   test "create should redirect if not logged in" do
@@ -38,7 +38,7 @@ class CardsControllerTest < ActionController::TestCase
   end
   
   test "create generates error then render new" do
-    @default_params[:box_add_card_to_box_action][:front] = nil
+    @default_params[:formdata][:front] = nil
     post :create, @default_params
     assert_template :new
   end
@@ -51,6 +51,37 @@ class CardsControllerTest < ActionController::TestCase
   test "get new assigns formdata" do
     get :new, box_id: boxes(:one).id
     assert assigns(:formdata).is_a? Box::AddCardToBoxAction
+  end
+  
+  test "get index redirects if not logged in" do
+    logout
+    get :index, box_id: boxes(:one).id
+    assert_redirected_to auth_login_path
+  end
+  
+  test "get index redirects if box is not mine" do
+    get :index, box_id: boxes(:three).id
+    assert_redirected_to boxes_path
+  end
+  
+  test "get index is success" do
+    get :index, box_id: boxes(:one).id
+    assert_response :success
+  end
+  
+  test "get index assigns all cards of the box" do
+    get :index, box_id: boxes(:one).id
+    assert_equal 2, assigns(:cards).count
+    assigns(:cards).each do |card|
+      assert_equal boxes(:one).id, card[:box_id]
+    end
+  end
+  
+  test "get index assigns empty array for empty box" do
+    logout
+    login users(:two)
+    get :index, box_id: boxes(:three).id
+    assert_equal 0, assigns(:cards).count
   end
   
 end

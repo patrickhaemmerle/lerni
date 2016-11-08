@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :boxes, only: [:index, :new, :create] do
-    resources :cards, only: [:create, :new], shallow: true
+    resources :cards, only: [:index, :new, :create], shallow: true
   end
  
   namespace :auth do

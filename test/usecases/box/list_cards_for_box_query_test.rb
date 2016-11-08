@@ -10,10 +10,23 @@ class Box::ListCardsForBoxQueryTest < ActiveSupport::TestCase
         assert result.success?
         assert_equal 2, result.cards.count
         result.cards.each do |card|
-            assert card.is_a? Card
-            assert_equal @default_params[:box_id], card.box.id
-            assert_equal @default_params[:user_id], card.box.user.id  
+            reference = Card.find card[:id]
+            assert_not card.is_a? Card
+            assert_equal @default_params[:box_id], card[:box_id]
+            assert_equal reference.box_id, card[:box_id]
+            assert_equal reference.front, card[:front]
+            assert_equal reference.back, card[:back]
         end
+    end
+    
+    test "successful call also loads the box" do
+        result = Box::ListCardsForBoxQuery.perform @default_params
+        
+        assert result.success?
+        assert_not result.box.is_a? Box
+        assert_equal boxes(:one).id, result.box[:id]
+        assert_equal boxes(:one).user_id, result.box[:user_id] 
+        assert_equal boxes(:one).name, result.box[:name]
     end
     
     test "successful call with empty box" do

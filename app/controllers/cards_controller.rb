@@ -1,7 +1,7 @@
 class CardsController < ApplicationController
   
   def create
-    input = params.require(:box_add_card_to_box_action).permit(:front, :back)
+    input = params.require(:formdata).permit(:front, :back)
     input[:user_id] = @current_user[:id]
     input[:box_id] = params[:box_id]
     
@@ -16,6 +16,18 @@ class CardsController < ApplicationController
   
   def new
     @formdata = Box::AddCardToBoxAction.new
+  end
+  
+  def index
+    input = {}
+    input[:user_id] = @current_user[:id]
+    input[:box_id] = params[:box_id]
+    result = Box::ListCardsForBoxQuery.perform input
+    if result.success?
+      @cards = result.cards
+    else
+      redirect_to boxes_path
+    end
   end
   
 end
