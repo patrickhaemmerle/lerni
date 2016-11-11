@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161020120243) do
+ActiveRecord::Schema.define(version: 20161111103449) do
 
   create_table "boxes", force: :cascade do |t|
     t.string   "name"
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 20161020120243) do
   end
 
   add_index "cards", ["box_id"], name: "index_cards_on_box_id"
+
+  create_table "learning_strategy_leitner_card_infos", force: :cascade do |t|
+    t.integer  "compartment"
+    t.datetime "last_seen"
+    t.integer  "card_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "learning_strategy_leitner_card_infos", ["card_id"], name: "index_learning_strategy_leitner_card_infos_on_card_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "firstname"
