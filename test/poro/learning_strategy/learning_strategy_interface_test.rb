@@ -33,6 +33,20 @@ class LearningStrategy::LearningStrategyInterfaceTest < ActiveSupport::TestCase
         return unless realtest
         assert_nil get_strategy.getNextCardToLearn boxes(:three).id
     end
+    
+    test "responds to actUponCorrectAnswer" do
+        return unless realtest
+        populate_with_cards_not_to_learn
+        card = populate_with_one_card_to_learn
+        assert get_strategy.actUponCorrectAnswer card.id
+    end
+    
+    test "responds to actUponWrongAnswer" do
+        return unless realtest
+        populate_with_cards_not_to_learn
+        card = populate_with_one_card_to_learn
+        assert get_strategy.actUponWrongAnswer card.id
+    end
    
     private
     
