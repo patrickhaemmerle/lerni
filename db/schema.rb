@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20161111103449) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "boxes", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
@@ -20,7 +23,7 @@ ActiveRecord::Schema.define(version: 20161111103449) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "boxes", ["user_id"], name: "index_boxes_on_user_id"
+  add_index "boxes", ["user_id"], name: "index_boxes_on_user_id", using: :btree
 
   create_table "cards", force: :cascade do |t|
     t.string   "front"
@@ -30,17 +33,17 @@ ActiveRecord::Schema.define(version: 20161111103449) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "cards", ["box_id"], name: "index_cards_on_box_id"
+  add_index "cards", ["box_id"], name: "index_cards_on_box_id", using: :btree
 
   create_table "learning_strategy_leitner_card_infos", force: :cascade do |t|
     t.integer  "compartment"
     t.datetime "last_seen"
-    t.integer  "card_id"
+    t.integer  "card_id",     null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "learning_strategy_leitner_card_infos", ["card_id"], name: "index_learning_strategy_leitner_card_infos_on_card_id"
+  add_index "learning_strategy_leitner_card_infos", ["card_id"], name: "index_learning_strategy_leitner_card_infos_on_card_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "firstname"
@@ -52,7 +55,10 @@ ActiveRecord::Schema.define(version: 20161111103449) do
     t.datetime "updated_at",      null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email"
-  add_index "users", ["login"], name: "index_users_on_login", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["login"], name: "index_users_on_login", unique: true, using: :btree
 
+  add_foreign_key "boxes", "users"
+  add_foreign_key "cards", "boxes"
+  add_foreign_key "learning_strategy_leitner_card_infos", "cards", on_delete: :cascade
 end
